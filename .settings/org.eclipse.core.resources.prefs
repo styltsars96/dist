@@ -1,0 +1,17 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=64ea69e7fdefbf1cfaf584d823fd4160e223d242
+eclipse.preferences.version=1
+encoding//WebContent/WEB-INF/view/employee/carValidation.jsp=UTF-8
+encoding//WebContent/WEB-INF/view/employee/carsForTransit.jsp=UTF-8
+encoding//WebContent/WEB-INF/view/employee/carsForValidation.jsp=UTF-8
+encoding//WebContent/WEB-INF/view/employee/complProcs.jsp=UTF-8
+encoding//WebContent/WEB-INF/view/employee/home.jsp=UTF-8
+encoding//WebContent/WEB-INF/view/employee/newprocess.jsp=UTF-8
+encoding//WebContent/WEB-INF/view/employee/processSaved.jsp=UTF-8
+encoding//WebContent/WEB-INF/view/employee/saveFailed.jsp=UTF-8
+encoding//WebContent/WEB-INF/view/login-failed.jsp=UTF-8
+encoding//WebContent/WEB-INF/view/login.jsp=UTF-8
+encoding//src/dist/entities/Car.java=UTF-8
+encoding//src/sql_queries.sql=UTF-8
+encoding/<project>=UTF-8
