@@ -61,7 +61,7 @@ public class EmployeeControler {
 			System.out.println("POST Request has: "+ map);//DEBUG
 			System.out.println("Saving: "+ process);//DEBUG
 			///////////////////////////////////////////////////////
-			process.setStatus("Expected");
+			process.setStatus("Προς Έλεγχο");
 			process.setShop(mainService.getShopById(shopId));
 			process.setStatusDate(new Date());
 			process.getCar().setStatus(null);
@@ -77,14 +77,14 @@ public class EmployeeControler {
 	 
 	@GetMapping("/completedProcs")
 	public String complProc(@CookieValue(value = "shopId", defaultValue = "1")int shopId, Model model) {
-		model.addAttribute("processes",mainService.getProcesses(shopId,"Completed"));
+		model.addAttribute("processes",mainService.getProcesses(shopId,"Ολοκληρώθηκε"));
 		model.addAttribute("pageTitle", "ComplProcs");
 		return "employee/complProcs";
 	}
 	
 	@GetMapping("/deliveredCars")//employee sees the arrived cars with purpose to valid them.
 	public String delcars(@CookieValue(value = "shopId", defaultValue = "1")int shopId,Model model) {
-		model.addAttribute("delcars",mainService.getDeliverCarsByStatus("Received",shopId));
+		model.addAttribute("delcars",mainService.getDeliverCarsByStatus("Παραλήφθηκε",shopId));
 		model.addAttribute("pageTitle", "Delivered Cars");
 		return "employee/carsForValidation";
 	}
@@ -113,8 +113,8 @@ public class EmployeeControler {
 		delivery.getProcess().getCar().setFirstRelease(firstRelease);
 		System.out.println(delivery);
 		//Inform data & save.
-		delivery.setStatus("Approved");
-		delivery.getProcess().setStatus("Expected");
+		delivery.setStatus("Εγκρίθηκε");
+		delivery.getProcess().setStatus("Προς Έλεγχο");
 		delivery.getProcess().setStatusDate(new Date());
 		mainService.updateDelivery(delivery);
 		//Redirect.
@@ -123,15 +123,15 @@ public class EmployeeControler {
 	
 	@GetMapping("/forTransit")
 	public String carsForTransit(@CookieValue(value = "shopId", defaultValue = "1") int shopId, Model model){
-		model.addAttribute("carsForTransit", mainService.getDeliverCarsByStatus("Declared",shopId));
-		System.err.println(mainService.getDeliverCarsByStatus("Declared",shopId));
+		model.addAttribute("carsForTransit", mainService.getDeliverCarsByStatus("Δηλώθηκε",shopId));
+		System.err.println(mainService.getDeliverCarsByStatus("Δηλώθηκε",shopId));
 		return "employee/carsForTransit";
 	}
 	
 	@PostMapping("/forTransit")
 	public String carArrive(@RequestParam("plate")String plate, Model model){
 		Delivery delivery = mainService.getDeliveryCarByPlate(plate);
-		delivery.setStatus("Received");
+		delivery.setStatus("Παραλήφθηκε");
 		delivery.getProcess().setStatusDate(new Date());
 		mainService.updateDelivery(delivery);
 		//Redirect

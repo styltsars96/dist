@@ -39,8 +39,8 @@ public class DeliveryApi {
 			//Inform & save data.
 			delivery.getProcess().getCar().setCustomer(customer);
 			delivery.getProcess().setStatusDate(new Date());
-			delivery.getProcess().setStatus("Awaiting Approval");
-			delivery.setStatus("Declared");
+			delivery.getProcess().setStatus("Προς Έγκριση");
+			delivery.setStatus("Δηλώθηκε");
 			
 			car = delivery.getProcess().getCar();
 			//Αυτό είναι για το delivery api, αφου πρωτα μπουν τα locations.

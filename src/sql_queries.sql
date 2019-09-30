@@ -53,9 +53,9 @@ create table car(
 `customer_id` int NOT NULL,-- Car belongs to customer
 `model` varchar(45) NOT NULL,
 `licence_plate` varchar(10) UNIQUE NOT NULL ,
-`fuel_type` ENUM ( 'Gasoline','Petrol','Gas'), -- FUEL_OILS 
+`fuel_type` ENUM ( 'Βενζίνη','Πετρέλαιο','Αέριο'), -- FUEL_OILS 
 `first_release` int , -- foramtting in Hibernate...
-`status` ENUM ( 'Good','Bad','Moderate') DEFAULT NULL,-- CAR_CONDITION
+`status` ENUM ( 'Καλή','Κακή','Μέτρια') DEFAULT NULL,-- CAR_CONDITION
 `discount` int,
 foreign key (`customer_id`) references customer(`id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -66,7 +66,7 @@ create table process (
 `id` int PRIMARY KEY AUTO_INCREMENT,
 `CAR_ID` INT,
 `SHOP_ID` INT,
-`STATUS` ENUM ('Awaiting Approval','Expected','Completed') DEFAULT 'Expected',
+`STATUS` ENUM ('Προς Έγκριση','Προς έλεγχο','Ολοκληρώθηκε') DEFAULT 'Προς έλεγχο',
 `Status_Date` DATE, -- foramtting in Hibernate...
 FOREIGN KEY (`CAR_ID`) REFERENCES car(`ID`),
 FOREIGN KEY (`SHOP_ID`) REFERENCES shop(`ID`)
@@ -79,7 +79,7 @@ process_id int,
 lon double,
 lat double,
 distance bigint,
-status ENUM('Declared','Received','Approved') DEFAULT 'Declared',
+status ENUM('Δηλώθηκε','Παραλήφθηκε','Εγκρίθηκε') DEFAULT 'Δηλώθηκε',
 foreign key (`process_id`) REFERENCES process(`id`)
 )ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
@@ -106,17 +106,27 @@ INSERT INTO `internal_user` (fullname, password,shop_role,enabled) VALUES ('admi
 
 INSERT INTO customer (fullname,afm,telephone) VALUES ("Mitsos Plateas",123456789,3905445346);
 
-	INSERT INTO car (customer_id, model, licence_plate, fuel_type, first_release) VALUES (1,"Honda Civic","ARM-1562",'Gas',1997);
-		INSERT INTO process (CAR_ID,SHOP_ID,status,Status_Date)  VALUES (1,1,'Expected', STR_TO_DATE('6-12-2017', '%d-%m-%Y'));
+	INSERT INTO car (customer_id, model, licence_plate, fuel_type, first_release) VALUES (1,"Honda Civic","ARM-1562",'Αέριο',1997);
+		INSERT INTO process (CAR_ID,SHOP_ID,status,Status_Date)  VALUES (1,1,'Προς έλεγχο', STR_TO_DATE('6-12-2017', '%d-%m-%Y'));
 
 
 insert into customer(fullname,passcode,afm,telephone) values ("Koults","pass",789456159,2102353525);
-	insert into car (customer_id,model,licence_plate,fuel_type,first_release)values (2,"Amodel","XXX-6969",'Gas',2003);
-		insert into process(car_id,shop_id,status,Status_date) values (2,1,'Awaiting Approval', STR_TO_DATE('6-12-2017', '%d-%m-%Y'));
-			insert into delivery(process_id,lon,lat,distance,status) values (2,1.523,12.598,40,'Received');
+	insert into car (customer_id,model,licence_plate,fuel_type,first_release)values (2,"Amodel","XXX-6969",'Αέριο',2003);
+		insert into process(car_id,shop_id,status,Status_date) values (2,1,'Προς Έγκριση', STR_TO_DATE('6-12-2017', '%d-%m-%Y'));
+			insert into delivery(process_id,lon,lat,distance,status) values (2,1.523,12.598,40,'Παραλήφθηκε');
 	
-	insert into car (customer_id,model,licence_plate,fuel_type,first_release)values (2,"SUBARU","SIN-6666",'Gas',1999);
-		insert into process(car_id,shop_id,status,Status_date) values (3,1,'Awaiting Approval', STR_TO_DATE('7-2-2017', '%d-%m-%Y'));
-			insert into delivery(process_id,lon,lat,distance,status) values (3,21.523,1.5988,50,'Received');
+	insert into car (customer_id,model,licence_plate,fuel_type,first_release)values (2,"SUBARU","SIN-6666",'Αέριο',1999);
+		insert into process(car_id,shop_id,status,Status_date) values (3,1,'Προς Έγκριση', STR_TO_DATE('7-2-2017', '%d-%m-%Y'));
+			insert into delivery(process_id,lon,lat,distance,status) values (3,21.523,1.5988,50,'Παραλήφθηκε');
 
 commit;
+
+/*
+select * from internal_user;
+select * from customer;
+select * from car;
+select * from process;
+select * from delivery;
+*/
+select * from internal_user;
+select * from customer;

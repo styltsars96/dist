@@ -25,7 +25,7 @@ public class MechanicControler {
 
 	@GetMapping({"/",""})
 	public String home(Model model, @CookieValue(value = "shopId", defaultValue = "1") int shopId) {
-		model.addAttribute("processes",mainService.getProcesses(shopId,"Expected"));
+		model.addAttribute("processes",mainService.getProcesses(shopId,"Προς Έλεγχο"));
 		model.addAttribute("pageTitle","Mechanic");
 		return "mechanic/home";
 	}
@@ -39,7 +39,7 @@ public class MechanicControler {
 			Car car = process.getCar();
 			car.setStatus(status);//Triggers the discount operation for car.
 			int disc = car.getDiscount();
-			process.setStatus("Completed");
+			process.setStatus("Ολοκληρώθηκε");
 			process.setStatusDate(new Date());
 			mainService.updateProcess(process);
 			return "redirect:/mechanic/";

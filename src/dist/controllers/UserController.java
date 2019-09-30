@@ -45,11 +45,11 @@ public class UserController {
 		return "admin/user-form";
 	}
 	
-	@PostMapping("/saveUser")
-	public String saveUser(@ModelAttribute("user") InternalUser user) {
-		// save the User using the service
+	@PostMapping("/saveUser") public String saveUser(@ModelAttribute("user") InternalUser user,Model model) { // save the User using the service 
 		userService.saveInternalUser(user);
-		return "redirect:/user/assignRole/"+user.getFullname();
+		System.err.println(user.getFullname());
+		model.addAttribute("username",user.getFullname());
+		return "redirect:/user/assignRole/"; 
 	}
 	
 	@GetMapping("/enable/{username}")
@@ -101,20 +101,15 @@ public class UserController {
 		}
 	}
 		
-	@GetMapping("/assignRole/{username}")
-	public String assignRole(Model model,  @PathVariable("username") String username, Authentication authentication) {
-		String auth = authentication.getAuthorities().iterator().next().getAuthority();//Get Role
-		if(auth.equals("admin")) {//Check if admin
-			InternalUser user = userService.getUser(username, null);
-			List<String> roles = new ArrayList<>();
-			//AVAILABLE ROLES!!!
-			roles.add("admin");
-			roles.add("mechanic");
-			roles.add("employee");
-		    model.addAttribute("roles", roles);
-		    model.addAttribute("user", user);
-			return "admin/assign-role";
-		}else return "redirect:/403";
+	@GetMapping("/assignRole/") public String assignRole(Model model, Authentication authentication,@ModelAttribute("username") String username ) { 
+	String auth = authentication.getAuthorities().iterator().next().getAuthority();//Get Role 
+	if(auth.equals("admin")) {//Check if admin 
+	InternalUser user = userService.getUser(username, null);
+	List<String> roles = new ArrayList<>(); //AVAILABLE ROLES!!!
+	roles.add("admin");
+	roles.add("mechanic");
+	roles.add("employee");
+	model.addAttribute("roles", roles); model.addAttribute("user", user); return "admin/assign-role"; }else return "redirect:/403"; 
 	}
 	
 	@PostMapping("/assignRole/{username}")

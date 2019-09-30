@@ -19,9 +19,9 @@ ${deliveredCar }
 </tr>
 <tr>
 <th>ΚΑΥΣΙΜΟ (Δηλώθηκε ως: ${deliveredCar.process.car.fuelType})</th><td>
-		<input type="radio" value="Gas" name="fuelType"/>Αέριο
-		<input type="radio" value="Petrol" name="fuelType"/>Πετρέλαιο
-		<input type="radio" value="Gasoline" name="fuelType"/>Βενζίνη
+		<input type="radio" value="Αέριο" name="fuelType"/>Αέριο
+		<input type="radio" value="Πετρέλαιο" name="fuelType"/>Πετρέλαιο
+		<input type="radio" value="Βενζίνη" name="fuelType"/>Βενζίνη
 </td>
 <tr>
 <th>ΕΤΟΣ ΠΡΩΤΗΣ ΚΥΚΛΩΦΟΡΙΑΣ</th><td><input type="number"  value="${deliveredCar.process.car.firstRelease}" name="firstRelease"/></td>

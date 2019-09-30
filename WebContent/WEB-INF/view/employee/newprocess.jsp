@@ -35,15 +35,15 @@
 			<tr>
 				<td>ΤΥΠΟΣ ΚΑΥΣΙΜΟΥ</td>
 				<td>ΠΕΤΡΕΛΑΙΟ<form:radiobutton path="car.fuelType"
-						value="Petrol" /></td>
+						value="Πετρέλαιο" /></td>
 			</tr>
 			<tr>
 				<td></td>
-				<td>ΑΕΡΙΟ<form:radiobutton path="car.fuelType" value="Gas" /></td>
+				<td>ΑΕΡΙΟ<form:radiobutton path="car.fuelType" value="Αέριο" /></td>
 			<tr>
 				<td></td>
 				<td>ΒΕΝΖΙΝΗ<form:radiobutton path="car.fuelType"
-						value="Gasoline" /></td>
+						value="Βενζίνη" /></td>
 			</tr>
 			<tr>
 				<td>ΕΤΟΣ ΠΡΩΤΗΣ ΚΥΚΛΟΦΟΡΙΑΣ</td>
